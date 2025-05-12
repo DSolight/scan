@@ -1,11 +1,13 @@
 import React from "react"
 import Header from "../../components/Header/Header"
+import Footer from "../../components/Footer/Footer"
 import { ReactComponent as HomeMain } from "../../assets/homemain.svg"
 import "./Home.css"
 
 export default function Home() {
   return (
-    <div>
+    <>
+    <div className="content">
       <Header />
       <main>
         <div className="hero">
@@ -18,5 +20,7 @@ export default function Home() {
         </div>
       </main>
     </div>
+    <Footer />
+    </>
   )
 }
