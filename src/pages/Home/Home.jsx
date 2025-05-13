@@ -2,8 +2,7 @@ import React from "react"
 import Header from "../../components/Header/Header"
 import Footer from "../../components/Footer/Footer"
 import Button from "../../components/Button/Button"
-import { ReactComponent as HomeMain } from "../../assets/homemain.svg"
-import { ReactComponent as HomeSecond } from "../../assets/homesecond.svg"
+import { HomeMain, HomeSecond } from "../../assets";
 import "./Home.css"
 import Utp from "../../components/Utp/Utp"
 
@@ -19,7 +18,7 @@ export default function Home() {
             <p>Комплексный анализ публикаций, получение данных в формате PDF на электронную почту.</p>
             <Button />
           </div>
-          <HomeMain />
+          <HomeMain className="homemain"/>
         </div>
       </main>
       <Utp />

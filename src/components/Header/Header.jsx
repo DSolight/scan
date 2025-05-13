@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo.svg';
+import { Logo } from "../../assets";
 import HeaderLogin from './HeaderLogin';
 import './Header.css';
 
@@ -11,7 +11,7 @@ export default function Header() {
 
   return (
     <div className='header'>
-      <img src={logo} alt="logo" />
+      <Logo />
       <nav>
         <ul>
           <li>

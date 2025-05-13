@@ -1,17 +1,117 @@
-.utp-line {
-  display: flex;
-  padding-top: 70px;
-  gap: 30px;
-  justify-content: center;
-  align-items: center;
+.utp-wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
-.utp-line__item {
-  padding: 22px 20px;
-  width: 400px;
+.utp-heading {
+  font-size: 45px;
+  font-family: 'Ferry', sans-serif;
+  margin-bottom: 70px;
+  text-align: left;
+}
+
+.utp-slider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.utp-cards {
+  display: flex;
+  gap: 35px;
+  flex-grow: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.utp-card {
+  flex: 0 0 400px;
   height: 225px;
-  flex-shrink: 0;
-  border-radius: 10px;
+  padding: 25px;
   background: #fff;
-  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Анимации */
+.utp-cards.next .utp-card {
+  animation: slideInNext 0.5s ease forwards;
+}
+
+.utp-cards.prev .utp-card {
+  animation: slideInPrev 0.5s ease forwards;
+}
+
+@keyframes slideInNext {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInPrev {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.utp-icon svg {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 20px;
+}
+
+.utp-text {
+  font-size: 18px;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.4;
+  margin: 0;
+  text-align: left;
+}
+
+.utp-arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 15px;
+  flex-shrink: 0;
+}
+
+.utp-arrow svg {
+  width: 40px;
+  height: 40px;
+}
+
+/* Адаптация под мобильные */
+@media (max-width: 768px) {
+  .utp-heading {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+
+  .utp-card {
+    flex: 0 0 335px;
+    height: 210px;
+    padding: 20px;
+  }
+
+  .utp-cards {
+    gap: 20px;
+  }
+
+  .utp-arrow svg {
+    width: 30px;
+    height: 30px;
+  }
 }
