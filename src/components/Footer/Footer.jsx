@@ -1,4 +1,3 @@
-import React from "react"
 import logof from "../../assets/logof.svg"
 import "./Footer.css"
 

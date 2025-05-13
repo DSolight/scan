@@ -1,0 +1,9 @@
+export { ReactComponent as Utpleft } from "./utpleft.svg";
+export { ReactComponent as Utpright } from "./utpright.svg";
+export { ReactComponent as Clock } from "./clock.svg";
+export { ReactComponent as Loupe } from "./loupe.svg";
+export { ReactComponent as Security } from "./sec.svg";
+export { ReactComponent as HomeMain } from "./homemain.svg"
+export { ReactComponent as HomeSecond } from "./homesecond.svg"
+export { ReactComponent as Logo } from "./logo.svg"
+export { ReactComponent as Logof } from "./logof.svg"

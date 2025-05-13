@@ -1,7 +1,22 @@
 .content {
-  margin: 0 60px;  
+  margin: 0 60px;
 }
 
 .hero {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero-text {
+  width: 743px;
+}
+
+.hero-text p {
+  width: 534px;
+  margin: 20px 0 60px;
+}
+
+.homesecond {
+  padding: 70px 0;
 }
