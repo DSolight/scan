@@ -1,7 +1,7 @@
-import React from "react"
 import Header from "../../components/Header/Header"
 import Footer from "../../components/Footer/Footer"
 import Button from "../../components/Button/Button"
+import Tarif from "../../components/Tarif/Tarif"
 import { HomeMain, HomeSecond } from "../../assets";
 import "./Home.css"
 import Utp from "../../components/Utp/Utp"
@@ -23,6 +23,7 @@ export default function Home() {
       </main>
       <Utp />
       <HomeSecond className="homesecond"/>
+      <Tarif />
     </div>
     <Footer />
     </>
