@@ -43,7 +43,8 @@ export default function Tarif({ currentTarif = "Beginner" }) {
         "Безлимитное количество запросов",
         "Приоритетная поддержка"
       ],
-      color: "#000000"
+      color: "#000000",
+      isDarkHeader: true
     }
   ];
 
@@ -57,7 +58,7 @@ export default function Tarif({ currentTarif = "Beginner" }) {
             className={`tarif-card ${currentTarif === tarif.name ? "tarif-card--current" : ""}`}
             style={{ "--tarif-color": tarif.color }}
           >
-            <div className="tarif-card__header">
+            <div className={`tarif-card__header ${tarif.isDarkHeader ? "tarif-card__header--dark" : ""}`}>
               <div className="tarif-card__info">
                 <h3 className="tarif-card__name">{tarif.name}</h3>
                 <p className="tarif-card__description">{tarif.description}</p>
@@ -66,32 +67,39 @@ export default function Tarif({ currentTarif = "Beginner" }) {
             </div>
             
             <div className="tarif-card__content">
-              <div className="tarif-card__prices">
-                {currentTarif === tarif.name && (
-                  <span className="tarif-card__badge">Текущий тариф</span>
-                )}
-                <div className="tarif-card__price-wrapper">
-                  <h3 className="tarif-card__current-price">{tarif.currentPrice}</h3>
-                  <h3 className="tarif-card__old-price">{tarif.oldPrice}</h3>
+              <div>
+                <div className="tarif-card__prices">
+                  {currentTarif === tarif.name && (
+                    <span className="tarif-card__badge">Текущий тариф</span>
+                  )}
+                  <div className="tarif-card__price-wrapper">
+                    <h3 className="tarif-card__current-price">{tarif.currentPrice}</h3>
+                    <h3 className="tarif-card__old-price">{tarif.oldPrice}</h3>
+                  </div>
+                  {tarif.installment && (
+                    <p className="tarif-card__installment">{tarif.installment}</p>
+                  )}
                 </div>
-                {tarif.installment && (
-                  <p className="tarif-card__installment">{tarif.installment}</p>
-                )}
+                
+                <div className="tarif-card__features">
+                  <p>В тариф входит:</p>
+                  <ul>
+                    {tarif.features.map((feature, index) => (
+                      <li key={index} className="tarif-card__feature-item">
+                        <GreenMark className="tarif-card__feature-icon" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
               
-              <div className="tarif-card__features">
-                <p>В тариф входит:</p>
-                <ul>
-                  {tarif.features.map((feature, index) => (
-                    <li key={index}>{feature}</li>
-                  ))}
-                </ul>
+              <div className="tarif-card__button-wrapper">
+                <Button 
+                  className="tarif-card__button"
+                  text={currentTarif === tarif.name ? "Перейти в личный кабинет" : "Подробнее"}
+                />
               </div>
-              
-              <Button 
-                className="tarif-card__button"
-                text={currentTarif === tarif.name ? "Перейти в личный кабинет" : "Подробнее"}
-              />
             </div>
           </div>
         ))}
