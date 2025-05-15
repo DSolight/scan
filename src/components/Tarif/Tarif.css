@@ -72,7 +72,12 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+}
+
+.tarif-card__main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .tarif-card__prices {
@@ -82,8 +87,8 @@
 
 .tarif-card__badge {
   position: absolute;
-  top: -10px;
-  right: 0;
+  top: -20px;
+  right: -20px;
   background: #3ba5e0;
   color: #fff;
   font-family: Inter;
@@ -127,8 +132,18 @@
   letter-spacing: 0.18px;
 }
 
+.tarif-card__features-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .tarif-card__features {
+  flex-grow: 1;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .tarif-card__features p {
@@ -165,25 +180,4 @@
 .tarif-card__button-wrapper {
   margin-top: auto;
   padding-top: 20px;
-}
-
-.tarif-card__button {
-  width: 100%;
-  padding: 15px 0;
-  border-radius: 5px;
-  background: #d2d2d2;
-  border: none;
-  cursor: pointer;
-  font-size: 20px;
-  font-family: Inter;
-  font-weight: 500;
-  letter-spacing: 0.2px;
-  transition: all 0.3s ease;
-}
-
-.tarif-card__button:hover {
-  background: #3ba5e0;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

@@ -5,7 +5,7 @@
 
 .utp-heading {
   font-size: 45px;
-  font-family: 'Ferry', sans-serif;
+  font-family: "Ferry", sans-serif;
   margin-bottom: 70px;
   text-align: left;
 }
@@ -21,8 +21,8 @@
   display: flex;
   gap: 35px;
   flex-grow: 1;
-  overflow: hidden;
   position: relative;
+  justify-content: center;
 }
 
 .utp-card {
@@ -74,7 +74,7 @@
 
 .utp-text {
   font-size: 18px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   line-height: 1.4;
   margin: 0;
   text-align: left;

@@ -2,7 +2,7 @@ import Button from "../Button/Button";
 import { Arrow, Lamp, Notebook, GreenMark } from "../../assets";
 import "./Tarif.css";
 
-export default function Tarif({ currentTarif = "Beginner" }) {
+export default function Tarif({ currentTarif = null }) {
   const tarifs = [
     {
       name: "Beginner",
@@ -96,8 +96,8 @@ export default function Tarif({ currentTarif = "Beginner" }) {
               
               <div className="tarif-card__button-wrapper">
                 <Button 
-                  className="tarif-card__button"
                   text={currentTarif === tarif.name ? "Перейти в личный кабинет" : "Подробнее"}
+                  className="tarif-card__button"
                 />
               </div>
             </div>
