@@ -1,36 +1,37 @@
-const BASE_URL = 'https://gateway.scan-interfax.ru/api/v1';
+const BASE_URL = "https://gateway.scan-interfax.ru/api/v1"
 
-// Функция для выполнения запросов с авторизацией
-export const fetchWithAuth = async (url, options = {}) => {
-  const token = localStorage.getItem('accessToken');
+// Общий метод для запросов с авторизацией
+export const apiRequest = async (endpoint, method = "GET", body = null) => {
+  const token = localStorage.getItem("accessToken")
   const headers = {
-    ...options.headers,
-    Authorization: `Bearer ${token}`,
-    'Content-Type': 'application/json',
-  };
-  return fetch(`${BASE_URL}${url}`, { ...options, headers });
-};
-
-// Функция для авторизации
-export const login = async (email, password) => {
-  const response = await fetch(`${BASE_URL}/account/login`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ login: email, password }),
-  });
-
-  if (!response.ok) {
-    throw new Error('Ошибка авторизации');
+    "Content-Type": "application/json",
+    Accept: "application/json",
+    ...(token && { Authorization: `Bearer ${token}` }),
   }
 
-  return response.json();
-};
+  const config = {
+    method,
+    headers,
+    body: body ? JSON.stringify(body) : null,
+  }
 
-// Функция для выхода
-export const logout = async () => {
-  // Очищаем localStorage
-  localStorage.removeItem('accessToken');
-  localStorage.removeItem('expire');
-};
+  const response = await fetch(`${BASE_URL}${endpoint}`, config)
+
+  if (!response.ok) {
+    const errorData = await response.json()
+    throw new Error(errorData.message || "Ошибка запроса")
+  }
+
+  return response.json()
+}
+
+// Авторизация
+export const login = async (credentials) => {
+  return apiRequest("/account/login", "POST", credentials)
+}
+
+// Выход
+export const logout = () => {
+  localStorage.removeItem("accessToken")
+  localStorage.removeItem("expire")
+}

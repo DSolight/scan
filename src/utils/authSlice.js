@@ -1,53 +1,46 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { login, logout } from './api';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import { login, logout } from "./api"
 
-const initialState = {
-  isAuthenticated: localStorage.getItem('accessToken') !== null,
-  user: null,
-  accessToken: localStorage.getItem('accessToken') || null,
-  expire: localStorage.getItem('expire') || null,
-};
+export const loginUser = createAsyncThunk("auth/login", async ({ login: username, password }, { rejectWithValue }) => {
+  try {
+    const data = await login({ login: username, password })
+    return data
+  } catch (error) {
+    return rejectWithValue(error.message)
+  }
+})
 
 const authSlice = createSlice({
-  name: 'auth',
-  initialState,
+  name: "auth",
+  initialState: {
+    isAuthenticated: !!localStorage.getItem("accessToken"),
+    status: "idle",
+    error: null,
+  },
   reducers: {
-    setAuth: (state, action) => {
-      state.isAuthenticated = true;
-      state.user = action.payload.user;
-      state.accessToken = action.payload.accessToken;
-      state.expire = action.payload.expire;
-    },
-    clearAuth: (state) => {
-      state.isAuthenticated = false;
-      state.user = null;
-      state.accessToken = null;
-      state.expire = null;
+    logoutUser: (state) => {
+      logout()
+      state.isAuthenticated = false
+      state.error = null
     },
   },
-});
+  extraReducers: (builder) => {
+    builder
+      .addCase(loginUser.pending, (state) => {
+        state.status = "loading"
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.status = "succeeded"
+        state.isAuthenticated = true
+        localStorage.setItem("accessToken", action.payload.accessToken)
+        localStorage.setItem("expire", action.payload.expire)
+      })
+      .addCase(loginUser.rejected, (state, action) => {
+        state.status = "failed"
+        state.error = action.payload
+      })
+  },
+})
 
-// Асинхронное действие для авторизации
-export const loginUser = (email, password) => async (dispatch) => {
-  try {
-    const data = await login(email, password);
-
-    // Сохраняем токен и дату истечения в localStorage
-    localStorage.setItem('accessToken', data.accessToken);
-    localStorage.setItem('expire', data.expire);
-
-    // Обновляем состояние
-    dispatch(setAuth({ user: { email }, accessToken: data.accessToken, expire: data.expire }));
-  } catch (error) {
-    throw error;
-  }
-};
-
-// Асинхронное действие для выхода
-export const logoutUser = () => async (dispatch) => {
-  await logout();
-  dispatch(clearAuth());
-};
-
-export const { setAuth, clearAuth } = authSlice.actions;
-export default authSlice.reducer;
+export const { logoutUser } = authSlice.actions
+export default authSlice.reducer
