@@ -35,7 +35,6 @@
   transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-/* Анимации */
 .utp-cards.next .utp-card {
   animation: slideInNext 0.5s ease forwards;
 }
@@ -93,7 +92,6 @@
   height: 40px;
 }
 
-/* Адаптация под мобильные */
 @media (max-width: 768px) {
   .utp-heading {
     font-size: 28px;
